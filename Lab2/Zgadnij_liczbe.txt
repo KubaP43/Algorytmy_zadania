@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        //Jak za pomocą metody „dziel i zwyciężaj” rozwiązać problem odgadywania liczby
+        System.out.println("Witaj w grze w której komputer postara się oddgadnąć Twoją liczbę w zakresie do 0 do 100");
+        int max = 100;
+        int min = 0;
+
+        System.out.println("Podawaj tylko odpowiedzi: 'tak' , 'zamalo' , 'zaduzo' ");
+        Scanner sc = new Scanner(System.in);
+        while (min <= max) {
+            int srodek = min + (max - min) / 2;
+
+            System.out.println("Czy to jest ta liczba " + srodek);
+            String odpowiedz = sc.nextLine();
+
+            if(odpowiedz.equals("tak")) {
+                    System.out.println("Twoją liczbą jest " + srodek + "!");
+                    break;
+                }
+
+                else if (odpowiedz.equals("zamalo")){
+                    min = srodek + 1;
+                }
+
+                else if (odpowiedz.equals("zaduzo")){
+                    max = srodek - 1;
+                }
+
+                else {
+                    System.out.println("Zła odpowiedź, podawaj tylko wskazane przez komuter odpowiedzi: 'tak' , 'zamalo' , 'zaduzo' " );
+                }
+        }
+        sc.close();
+    }
+}
