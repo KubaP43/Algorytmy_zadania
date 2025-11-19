@@ -1,0 +1,54 @@
+package Algorytmy_cwiczenia;
+
+public class PD_Plecak {
+
+    static int[] W =  {4, 6, 5, 10, 2, 7}; //Wartość
+    static int[] V = {2, 6, 3, 3, 1, 2};  //Objętość
+    static int max_objetosc = 10; //Maxksymalna objetosc plecaka
+
+    public static void main(String[] args) {
+        int ilosc_przedmiotow = V.length; // liczba przedmiotow ( 6 )
+        int[][] dp = new int[ilosc_przedmiotow + 1][max_objetosc + 1] ;
+
+        for (int i = 0; i <= ilosc_przedmiotow; i++) {  // i - ile przedmitów rozważamy
+            for (int j = 0; j <= max_objetosc; j++) { //Sprawdzamy aktualną wartość plecaka
+
+                //Warunek czy to się mieści wgl
+
+                if (V[i - 1] > j) {
+                    dp[i][j] = dp[i - 1][j];
+                    // Sprawdzamy czy przedmiot jest za duzy - jesli tak to go nie bierzemy
+                    // i - 1 = pierwszy element w tablicy bo 1 = i[0]
+                    // (objętość przedmiotu V[i - 1] jest większa od aktualne pojemnośći [j]
+                }
+
+                //Warunek 2 czy ten przedmiot bierzemy czy nie bierzemy ?
+                else {
+                    dp[i][j] = Math.max(
+                            dp[i - 1][j], //Bierzemy ten przedmiot
+                            dp[i- 1][j - V[i - 1]] + W[i - 1]);  // nie bierzemy
+                }
+            }
+        }
+        System.out.println("Maksymalna wartość, którą można spakować to: " + dp[ilosc_przedmiotow][max_objetosc]);
+
+
+
+//        // (opcjonalnie) odtworzenie, które przedmioty wzięliśmy:
+//        boolean[] zestaw = new boolean[ilosc_przedmiotow];
+//        int j = max_objetosc;
+//        for (int i = ilosc_przedmiotow; i >= 1; i--) {
+//            if (dp[i][j] != dp[i - 1][j]) { // wartość się zmieniła -> przedmiot wzięty
+//                zestaw[i - 1] = true;
+//                j -= V[i - 1];
+//            }
+//        }
+//
+//        System.out.println("Wybrane przedmioty (indeksy i [V,W]):");
+//        for (int i = 0; i < ilosc_przedmiotow; i++) {
+//            if (zestaw[i]) {
+//                System.out.println("i = " + i + "  V = " + V[i] + "  W = " + W[i]);
+//            }
+//        }
+    }
+}

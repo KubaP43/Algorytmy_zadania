@@ -1,0 +1,37 @@
+package Algorytmy_cwiczenia;
+
+public class MC_Reszta {
+    public static void main(String[] args) {
+        int kwota = 18;
+        int moneta_5 = 5;
+        int moneta_2 = 2;
+        int moneta_1 = 1;
+        int najlepsza1 = 0;
+        int najlepsza2 = 0;
+        int najlepsza5 = 0;
+        int najlepsza_kombinajca = Integer.MAX_VALUE;
+        int ile_monet = 0;
+
+        for(int i = 0; i <= kwota / moneta_5; i++){
+            for(int j = 0; j <= kwota / moneta_2; j++){
+                for(int k = 0; k <= kwota / moneta_1; k++) {
+                    int suma = i * moneta_5 + j * moneta_2 + k * moneta_1;
+                    if (suma == kwota){
+                        ile_monet = i + k + j;
+
+                        if (ile_monet < najlepsza_kombinajca){
+                            najlepsza_kombinajca = ile_monet;
+                            najlepsza5 = i;
+                            najlepsza2 = j;
+                            najlepsza1 = k;
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("Dla kwoty: " + kwota);
+        System.out.println("Monet 5zł: " + najlepsza5);
+        System.out.println("Monet 2zł: " + najlepsza2);
+        System.out.println("Monet 1: " + najlepsza1);
+    }
+}

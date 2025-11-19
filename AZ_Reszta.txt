@@ -1,0 +1,18 @@
+package Algorytmy_cwiczenia;
+
+public class AZ_Reszta {
+    public static void main(String[] args) {
+        int kwota = 9;
+        int monety[] = {5,2,1};
+        int ile_tej_monety[] =  new int[monety.length];
+
+        for(int i = 0; i < monety.length; i++) {
+            ile_tej_monety[i] = kwota / monety[i];
+            kwota = kwota % monety[i];
+        }
+        for(int i = 0; i < monety.length; i++) {
+            System.out.println("Dla monety " + monety[i] + " użyjemy jej " + ile_tej_monety[i]);
+        }
+
+    }
+}
